@@ -1,0 +1,26 @@
+{
+  "name": "infoware-assignment",
+  "version": "1.0.0",
+  "description": "\"Backend Api using Nodejs and MySQL as Database\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\"https://github.com/yJoelhenry7/infomare_server\""
+  },
+  "keywords": [
+    "Nodejs",
+    "mysql",
+    "sequelize"
+  ],
+  "author": "Joel Henry",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22",
+    "sequelize": "^6.31.0",
+    "sequelize-cli": "^6.6.0"
+  }
+}
