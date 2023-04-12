@@ -41,19 +41,71 @@ data.create = async (req, res) => {
     });
   }
 };
+
 // Getting All the Employees
 data.getAll = async (req, res) => {
   try {
-  let employeeData = await employee.findAll({});
-  return res.status(200).json({
-   employeeData,
-  })
+    let employeeData = await employee.findAll({});
+    return res.status(200).json({
+      employeeData,
+    });
   } catch (error) {
-  res.status(500).json({
-  success: false,
-  error: error
-  })
+    res.status(500).json({
+      success: false,
+      error: error,
+    });
   }
-  }
+};
 
+// Getting an employee based on ID
+data.get = async (req, res) => {
+  try {
+    let id = req.params.id;
+    let employeeData = await employee.findByPk(id);
+    if (employeeData) {
+      return res.status(200).json({
+        employeeData,
+      });
+    } else {
+      return res.status(400).json({
+        success: false,
+        error: "No such user present",
+        data: [],
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error,
+    });
+  }
+};
+
+// update an employee based on ID
+data.updateEmployee = async (req, res) => {
+  try {
+    let id = req.params.id;
+    let body = req.body;
+    let employeeData = await employee.update(body, {
+      where: {
+        id: id,
+      },
+    });
+    if (employeeData[0] === 0) {
+      return res.status(200).json({
+        success: false,
+        error: `No user found with this ${id}`,
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      "number of rows changed": employeeData,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error,
+    });
+  }
+};
 module.exports = data;

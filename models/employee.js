@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class employee extends Model {
     /**
@@ -13,18 +11,69 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  employee.init({
-    fullName: DataTypes.STRING,
-    jobTitle: DataTypes.STRING,
-    phoneNumber: DataTypes.INTEGER,
-    address: DataTypes.STRING,
-    primary: DataTypes.STRING,
-    primaryNum: DataTypes.INTEGER,
-    secondary: DataTypes.STRING,
-    secondaryNum: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'employee',
-  });
+  employee.init(
+    {
+      fullName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      jobTitle: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      phoneNumber: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      address: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      primary: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      primaryNum: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      secondary: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      secondaryNum: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
+    },
+    {
+      sequelize,
+      modelName: "employee",
+    }
+  );
   return employee;
 };
