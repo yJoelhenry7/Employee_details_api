@@ -41,5 +41,19 @@ data.create = async (req, res) => {
     });
   }
 };
+// Getting All the Employees
+data.getAll = async (req, res) => {
+  try {
+  let employeeData = await employee.findAll({});
+  return res.status(200).json({
+   employeeData,
+  })
+  } catch (error) {
+  res.status(500).json({
+  success: false,
+  error: error
+  })
+  }
+  }
 
 module.exports = data;
