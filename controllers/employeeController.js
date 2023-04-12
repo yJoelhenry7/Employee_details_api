@@ -108,4 +108,30 @@ data.updateEmployee = async (req, res) => {
     });
   }
 };
+// Delete a user based on ID
+data.delete = async (req, res) => {
+  try {
+  let id = req.params.id;
+  let employeeData = await employee.destroy({
+  where: {
+  id: id
+  }
+  });
+  if (employeeData === 1) {
+  return res.status(200).json({
+  success: true,
+  message: `User with id=${id} deleted`
+  })
+  }
+  return res.status(200).json({
+  success: false,
+  message: `User with id =${id} is not present.`
+  })
+  } catch (error) {
+  return res.status(200).json({
+  success: false,
+  error: error
+  })
+  }
+  }
 module.exports = data;
